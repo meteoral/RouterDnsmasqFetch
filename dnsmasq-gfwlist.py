@@ -26,7 +26,7 @@ baseurl = 'https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt'
 # match comments/title/whitelist/ip address
 comment_pattern = '^\!|\[|^@@|^\d+\.\d+\.\d+\.\d+'
 domain_pattern = '([\w\-\_]+\.[\w\.\-\_]+)[\/\*]*'
-date_pattern = 'Last Modified: (.*) \+0800$'
+date_pattern = 'Last Modified: (.*) \+0[0-9]00$'
 tmpfile = '/tmp/gfwlisttmp'
 # do not write to router internal flash directly
 outfile = '/tmp/gfwlist.conf'
