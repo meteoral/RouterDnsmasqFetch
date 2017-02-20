@@ -72,10 +72,6 @@ for line in tfs.readlines():
                         print 'no valid domain in this line: ' + line
 
 fs.write('\n# patch gfwlist\n')
-fs.write('server=/.youtube-nocookie.com/%s#%s\n'%(mydnsip,mydnsport))
-fs.write('server=/.thefacebook.com/%s#%s\n'%(mydnsip,mydnsport))
-fs.write('ipset=/.youtube-nocookie.com/%s\n'%filtername)
-fs.write('ipset=/.thefacebook.com/%s\n'%filtername)
 fs.write('server=/.google.com.hk/%s#%s\n'%(mydnsip,mydnsport))
 fs.write('ipset=/.google.com.hk/%s\n'%filtername)
 fs.write('server=/.google.co.jp/%s#%s\n'%(mydnsip,mydnsport))
