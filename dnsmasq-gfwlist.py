@@ -26,7 +26,7 @@ baseurl = 'https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt'
 # match comments/title/whitelist/ip address
 comment_pattern = '^\!|\[|^@@|^\d+\.\d+\.\d+\.\d+'
 domain_pattern = '([\w\-\_]+\.[\w\.\-\_]+)[\/\*]*'
-date_pattern = 'Last Modified: (.*) \+0[0-9]00$'
+date_pattern = 'Last Modified: (.*) [+-]0[0-9]00$'
 tmpfile = '/tmp/gfwlisttmp'
 # do not write to router internal flash directly
 outfile = '/tmp/gfwlist.conf'
@@ -53,7 +53,7 @@ for line in tfs.readlines():
                 if date:
                     dates = time.strptime(date[0], "%a, %d %b %Y %H:%M:%S")
                     dates = time.strftime("%Y-%m-%d %H:%M:%S",dates)
-                    fs.write('# updated list on ' + dates + '\n\n # gfwlist \n')
+                    fs.write('# updated list on ' + dates + '\n\n# gfwlist \n')
                 else:
                     print 'this is a comment line: ' + line
                     #fs.write('#' + line)
