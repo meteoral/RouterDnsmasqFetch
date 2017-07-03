@@ -17,9 +17,11 @@ import commands
 
 mydnsip = '127.0.0.1'
 mydnsport = '5454'
-#cndns = commands.getoutput("nvram get wan0_dns|sed 's/ /\n/g'|grep -v 0.0.0.0|grep -v 127.0.0.1|sed -n 1p")
-cndns = '223.5.5.5'
+cndns = '114.114.114.114'
 filtername = 'gfwlist'
+homedir = '.'
+rulesfile = homedir + '/gfwlist.conf'
+adbfile = homedir + '/adblist.conf'
 
 # the url of gfwlist
 baseurl = 'https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt'
@@ -30,12 +32,12 @@ date_pattern = 'Last Modified: (.*) [+-]0[0-9]00$'
 tmpfile = '/tmp/gfwlisttmp'
 # do not write to router internal flash directly
 outfile = '/tmp/gfwlist.conf'
-rulesfile = './gfwlist.conf'
 
 fs =  file(outfile, 'w')
 fs.write('# gfw list ipset rules for dnsmasq\n')
 fs.write('# by Meteoral\n')
-fs.write('# E-mail:mail@liuqingwei.com\n')
+fs.write('# E-mail : mail@liuqingwei.com\n')
+fs.write('# Web : https://liuqingwei.com\n')
 fs.write('# created on ' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '\n')
 print 'fetching list...'
 content = urllib2.urlopen(baseurl, timeout=15).read().decode('base64')
@@ -74,14 +76,13 @@ for line in tfs.readlines():
 fs.write('\n# patch gfwlist\n')
 fs.write('server=/.google.com.hk/%s#%s\n'%(mydnsip,mydnsport))
 fs.write('ipset=/.google.com.hk/%s\n'%filtername)
-fs.write('server=/.google.co.jp/%s#%s\n'%(mydnsip,mydnsport))
-fs.write('ipset=/.google.co.jp/%s\n'%filtername)
 tfs.close()
 fs.close();
 
 print 'moving generated file to dnsmasg directory'
 shutil.move(outfile, rulesfile)
+print 'generate gfwlist finish!'
 print 'fetching easylist file'
-print os.popen("wget --no-check-certificate -qO - https://easylist-downloads.adblockplus.org/easylistchina+easylist.txt | grep ^\|\|[^\*]*\^$ | sed -e 's:||:address\=\/:' -e 's:\^:/127\.0\.0\.1:' > ./adblist.conf").read()
+print os.popen("wget --no-check-certificate -qO - https://easylist-downloads.adblockplus.org/easylistchina+easylist.txt | grep ^\|\|[^\*]*\^$ | sed -e 's:||:address\=\/:' -e 's:\^:/127\.0\.0\.1:' > " + adbfile).read()
 
 print 'done!'
