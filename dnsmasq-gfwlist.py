@@ -76,6 +76,8 @@ for line in tfs.readlines():
 fs.write('\n# patch gfwlist\n')
 fs.write('server=/.google.com.hk/%s#%s\n'%(mydnsip,mydnsport))
 fs.write('ipset=/.google.com.hk/%s\n'%filtername)
+fs.write('server=/.amazonaws.com/%s#%s\n'%(mydnsip,mydnsport))
+fs.write('ipset=/.amazonaws.com/%s\n'%filtername)
 tfs.close()
 fs.close();
 
