@@ -86,6 +86,9 @@ shutil.move(outfile, rulesfile)
 print 'generate gfwlist finish!'
 print 'fetching easylist file'
 print os.popen("wget --no-check-certificate -qO - https://easylist-downloads.adblockplus.org/easylistchina+easylist.txt | grep ^\|\|[^\*]*\^$ | sed -e 's:||:address\=\/:' -e 's:\^:/127\.0\.0\.1:' > " + adbfile).read()
+print os.popen("echo 'address=/ad.mi.com/127.0.0.1' >> " + adbfile).read()
+print os.popen("echo 'address=/ad.xiaomi.com/127.0.0.1' >> " + adbfile).read()
+print os.popen("echo 'address=/ad1.xiaomi.com/127.0.0.1' >> " + adbfile).read()
 print os.popen("echo 'address=/de.pandora.xiaomi.com/127.0.0.1' >> " + adbfile).read()
 print os.popen("echo 'address=/mishop.pandora.xiaomi.com/127.0.0.1' >> " + adbfile).read()
 print os.popen("echo 'address=/auth.api.gitv.tv/127.0.0.1' >> " + adbfile).read()
@@ -112,5 +115,10 @@ print os.popen("echo 'address=/omgmta.play.aiseet.atianqi.com/127.0.0.1' >> " + 
 print os.popen("echo 'address=/jellyfish.pandora.xiaomi.com/127.0.0.1' >> " + adbfile).read()
 print os.popen("echo 'address=/starfish.pandora.xiaomi.com/127.0.0.1' >> " + adbfile).read()
 print os.popen("echo 'address=/misc.in.duokanbox.com/127.0.0.1' >> " + adbfile).read()
+print os.popen("echo 'address=/adv.sec.miui.com/127.0.0.1' >> " + adbfile).read()
+print os.popen("echo 'address=/text.ad.xiaomi.com/127.0.0.1' >> " + adbfile).read()
+print os.popen("echo 'address=/new.api.ad.xiaomi.com/127.0.0.1' >> " + adbfile).read()
+print os.popen("echo 'address=/cdn.ad.xiaomi.com/127.0.0.1' >> " + adbfile).read()
+print os.popen("echo 'address=/e.ad.xiaomi.com/127.0.0.1' >> " + adbfile).read()
 
 print 'done!'
